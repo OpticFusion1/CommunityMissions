@@ -1,0 +1,6 @@
+name: CommunityMissions
+description: Rotating community missions with milestone perks and player stats.
+version: ${project.version}
+author: Optic_Fusion1
+main: optic_fusion1.communitymissions.CommunityMissions
+api-version: 1.13
