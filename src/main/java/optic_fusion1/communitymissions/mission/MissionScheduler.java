@@ -37,7 +37,7 @@ public class MissionScheduler {
                     long elapsed = now - last;
                     if (elapsed >= 60) {
                         long minutes = elapsed / 60;
-                        missionService.contribute(player.getUniqueId(), MissionObjectiveType.PLAYTIME_MINUTES, minutes, "ANY");
+                        missionService.contribute(player.getUniqueId(), MissionObjectiveType.PLAYTIME_MINUTES, minutes, "ANY", player.getWorld().getName());
                         activeSessionSeconds.put(player.getUniqueId(), now);
                     }
                 });

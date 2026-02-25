@@ -22,7 +22,7 @@ public class MissionProgressListener implements Listener {
     @EventHandler(ignoreCancelled = true)
     public void onBlockBreak(BlockBreakEvent event) {
         missionService.contribute(event.getPlayer().getUniqueId(), MissionObjectiveType.BLOCK_BREAK, 1,
-                event.getBlock().getType().name());
+                event.getBlock().getType().name(), event.getBlock().getWorld().getName());
     }
 
     @EventHandler(ignoreCancelled = true)
@@ -32,13 +32,13 @@ public class MissionProgressListener implements Listener {
             return;
         }
         missionService.contribute(killer.getUniqueId(), MissionObjectiveType.ENTITY_KILL, 1,
-                event.getEntityType().name());
+                event.getEntityType().name(), event.getEntity().getWorld().getName());
     }
 
     @EventHandler(ignoreCancelled = true)
     public void onFish(PlayerFishEvent event) {
         if (event.getState() == PlayerFishEvent.State.CAUGHT_FISH) {
-            missionService.contribute(event.getPlayer().getUniqueId(), MissionObjectiveType.FISH_CATCH, 1, "ANY");
+            missionService.contribute(event.getPlayer().getUniqueId(), MissionObjectiveType.FISH_CATCH, 1, "ANY", event.getPlayer().getWorld().getName());
         }
     }
 
@@ -48,7 +48,7 @@ public class MissionProgressListener implements Listener {
             return;
         }
         missionService.contribute(player.getUniqueId(), MissionObjectiveType.ITEM_CRAFT, 1,
-                event.getRecipe().getResult().getType().name());
+                event.getRecipe().getResult().getType().name(), player.getWorld().getName());
     }
 
     @EventHandler(ignoreCancelled = true)
@@ -56,6 +56,6 @@ public class MissionProgressListener implements Listener {
         if (event.getFrom().distanceSquared(event.getTo()) < 9) {
             return;
         }
-        missionService.contribute(event.getPlayer().getUniqueId(), MissionObjectiveType.DISTANCE_WALK, 3, "ANY");
+        missionService.contribute(event.getPlayer().getUniqueId(), MissionObjectiveType.DISTANCE_WALK, 3, "ANY", event.getPlayer().getWorld().getName());
     }
 }

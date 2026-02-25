@@ -87,27 +87,27 @@ public class MissionService {
         }
     }
 
-    public void contribute(UUID playerId, MissionObjectiveType type, long amount, String materialOrEntity) {
+    public void contribute(UUID playerId, MissionObjectiveType type, long amount, String materialOrEntity, String worldName) {
         for (ActiveMission active : activeMissions.values()) {
             MissionDefinition def = active.definition();
             if (def.objectiveType() != type) {
                 continue;
             }
-            if (!matchesConstraint(def, materialOrEntity)) {
+            if (!matchesConstraint(def, materialOrEntity, worldName)) {
                 continue;
             }
             addProgress(playerId, active, amount);
         }
     }
 
-    private boolean matchesConstraint(MissionDefinition definition, String materialOrEntity) {
+    private boolean matchesConstraint(MissionDefinition definition, String materialOrEntity, String worldName) {
         if (definition.requiredMaterial() != null) {
             return definition.requiredMaterial().name().equalsIgnoreCase(materialOrEntity);
         }
         if (definition.requiredEntityType() != null) {
             return definition.requiredEntityType().name().equalsIgnoreCase(materialOrEntity);
         }
-        return true;
+        return definition.allowedWorlds().contains(worldName);
     }
 
     public void addManualContribution(String missionId, UUID playerId, long amount) {

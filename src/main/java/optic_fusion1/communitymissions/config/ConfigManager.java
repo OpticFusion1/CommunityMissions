@@ -6,8 +6,10 @@ import org.bukkit.entity.EntityType;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
+import java.util.Set;
 import java.util.logging.Level;
 import optic_fusion1.communitymissions.CommunityMissions;
 import optic_fusion1.communitymissions.mission.MissionDefinition;
@@ -110,7 +112,12 @@ public class ConfigManager {
             String displayName = color(m.getString("display-name", id));
             String description = color(m.getString("description", ""));
             boolean enabled = m.getBoolean("enabled", true);
-
+            Set<String> worlds = new LinkedHashSet<>();
+            for (String world : m.getStringList("worlds")) {
+                if (!world.isBlank()) {
+                    worlds.add(world.trim().toLowerCase(Locale.ROOT));
+                }
+            }
             List<MissionMilestone> milestones = new ArrayList<>();
             for (String line : m.getStringList("milestones")) {
                 // format: target|perk|durationSeconds|broadcast|command1;;command2
@@ -141,7 +148,7 @@ public class ConfigManager {
                 milestones.add(new MissionMilestone(milestoneTarget, perk, duration, commands, broadcast));
             }
 
-            out.add(new MissionDefinition(id, displayName, description, type, material, entityType, target, milestones, points, enabled));
+            out.add(new MissionDefinition(id, displayName, description, type, material, entityType, worlds, target, milestones, points, enabled));
         }
         return out;
     }

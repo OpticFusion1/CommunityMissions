@@ -42,6 +42,8 @@ missions:
     description: "Clear zombies around settlements to keep paths safe."
     target: 700
     points-per-contribution: 2
+    worlds:
+      - world
     milestones:
       - "150|SPEED|500|&aRangers marked safe roads. Speed activated.|"
       - "500|HERO_OF_THE_VILLAGE|500|&6The settlements trust everyone more now.|"
