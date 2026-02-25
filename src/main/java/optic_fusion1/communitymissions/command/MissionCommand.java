@@ -64,7 +64,7 @@ public class MissionCommand implements CommandExecutor, TabCompleter {
                     return true;
                 }
                 missionService.reloadAll();
-                sender.sendMessage(config.prefix() + "§aUnityMissions reloaded.");
+                sender.sendMessage(config.prefix() + "§aCommunityMissions reloaded.");
             }
             case "rotate" -> {
                 if (!hasAdminPermission(sender)) {
@@ -111,11 +111,11 @@ public class MissionCommand implements CommandExecutor, TabCompleter {
     }
 
     private boolean hasAdminPermission(CommandSender sender) {
-        return sender.hasPermission("unitymissions.admin") || sender.hasPermission("momentum.admin");
+        return sender.hasPermission("communitymissions.admin");
     }
 
     private void sendHelp(CommandSender sender, String label) {
-        sender.sendMessage(config.prefix() + "§bUnity Missions commands:");
+        sender.sendMessage(config.prefix() + "§bCommunityMissions commands:");
         sender.sendMessage("§7/" + label + " missions §8- §fOpen mission menu");
         sender.sendMessage("§7/" + label + " active §8- §fList active mission progress");
         sender.sendMessage("§7/" + label + " next §8- §fShow next mission rotation timer");

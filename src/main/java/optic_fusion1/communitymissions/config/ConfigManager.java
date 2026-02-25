@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Locale;
+import java.util.logging.Level;
 import optic_fusion1.communitymissions.CommunityMissions;
 import optic_fusion1.communitymissions.mission.MissionDefinition;
 import optic_fusion1.communitymissions.mission.MissionMilestone;
@@ -84,7 +85,7 @@ public class ConfigManager {
             try {
                 type = MissionObjectiveType.valueOf(m.getString("type", "BLOCK_BREAK").toUpperCase(Locale.ROOT));
             } catch (IllegalArgumentException ex) {
-                plugin.getLogger().warning("Unknown mission type for " + id + ". Skipping.");
+                plugin.getLogger().log(Level.WARNING, "Unknown mission type for {0}. Skipping.", id);
                 continue;
             }
 
@@ -100,7 +101,7 @@ public class ConfigManager {
                 try {
                     entityType = EntityType.valueOf(entityRaw.toUpperCase(Locale.ROOT));
                 } catch (Exception ignored) {
-                    plugin.getLogger().warning("Invalid entity type for mission " + id + ".");
+                    plugin.getLogger().log(Level.WARNING, "Invalid entity type for mission {0}.", id);
                 }
             }
 
@@ -125,7 +126,7 @@ public class ConfigManager {
                     perk = MissionPerkType.valueOf(split[1].toUpperCase(Locale.ROOT));
                     duration = Integer.parseInt(split[2]);
                 } catch (Exception ignored) {
-                    plugin.getLogger().warning("Invalid milestone in mission " + id + ": " + line);
+                    plugin.getLogger().log(Level.WARNING, "Invalid milestone in mission {0}: {1}", new Object[]{id, line});
                     continue;
                 }
                 String broadcast = color(split[3]);

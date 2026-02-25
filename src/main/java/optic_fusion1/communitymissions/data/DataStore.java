@@ -12,6 +12,7 @@ import java.util.Map;
 import java.util.Set;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.logging.Level;
 import optic_fusion1.communitymissions.CommunityMissions;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
@@ -58,7 +59,7 @@ public class DataStore {
                 Set<Long> milestones = new HashSet<>();
                 for (String raw : section.getStringList("milestones-triggered")) {
                     try {
-                        milestones.add(Long.parseLong(raw));
+                        milestones.add(Long.valueOf(raw));
                     } catch (NumberFormatException ignored) {
                     }
                 }
@@ -130,7 +131,7 @@ public class DataStore {
         try {
             yaml.save(file);
         } catch (IOException e) {
-            plugin.getLogger().severe("Failed to save data.yml: " + e.getMessage());
+            plugin.getLogger().log(Level.SEVERE, "Failed to save data.yml: {0}", e.getMessage());
         }
     }
 

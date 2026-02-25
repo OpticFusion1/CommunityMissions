@@ -22,8 +22,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class MissionsMenu implements Listener {
 
-    private static final String TITLE = "§0Unity Missions";
-
+    private static final String TITLE = "§0CommunityMissions";
     private final MissionService missionService;
     private final ConfigManager config;
 
@@ -34,15 +33,13 @@ public class MissionsMenu implements Listener {
 
     public void open(Player player) {
         Inventory inventory = Bukkit.createInventory(null, 27, TITLE);
-
         AtomicInteger slot = new AtomicInteger(10);
         missionService.getActiveMissions().stream()
                 .sorted(Comparator.comparing(active -> active.definition().displayName()))
                 .forEach(activeMission -> inventory.setItem(slot.getAndIncrement(), createMissionItem(activeMission)));
-
         ItemStack info = new ItemStack(Material.NETHER_STAR);
         ItemMeta meta = info.getItemMeta();
-        meta.setDisplayName("§dYour Unity Profile");
+        meta.setDisplayName("§dYour Mission Profile");
         List<String> lore = new ArrayList<>();
         lore.add("§7Lifetime points: §f" + missionService.getPlayerPoints(player.getUniqueId()));
         lore.add("§7Rotation in: §f" + FormatUtil.compactDuration(Math.max(0,
