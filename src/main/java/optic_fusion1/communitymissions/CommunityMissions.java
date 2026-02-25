@@ -1,5 +1,6 @@
 package optic_fusion1.communitymissions;
 
+import me.clip.placeholderapi.PlaceholderAPIPlugin;
 import optic_fusion1.communitymissions.command.MissionCommand;
 import optic_fusion1.communitymissions.config.ConfigManager;
 import optic_fusion1.communitymissions.data.DataStore;
@@ -9,6 +10,7 @@ import optic_fusion1.communitymissions.listener.PlayerListener;
 import optic_fusion1.communitymissions.mission.MissionScheduler;
 import optic_fusion1.communitymissions.mission.MissionService;
 import optic_fusion1.communitymissions.perk.PerkService;
+import optic_fusion1.communitymissions.placeholder.CommunityMissionsPlaceholderExpansion;
 import org.bukkit.Bukkit;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -40,6 +42,7 @@ public class CommunityMissions extends JavaPlugin {
         missionScheduler = new MissionScheduler(this, missionService, configManager);
 
         registerListeners();
+        registerPlaceholderExpansion();
 
         MissionCommand command = new MissionCommand(this, missionService, missionMenu, configManager);
 
@@ -72,4 +75,12 @@ public class CommunityMissions extends JavaPlugin {
     private void registerListener(Listener listener) {
         pluginManager.registerEvents(listener, this);
     }
+
+    private void registerPlaceholderExpansion() {
+        if (pluginManager.getPlugin("PlaceholderAPI") == null || !(pluginManager.getPlugin("PlaceholderAPI") instanceof PlaceholderAPIPlugin)) {
+            return;
+        }
+        new CommunityMissionsPlaceholderExpansion(this, missionService).register();
+    }
+
 }

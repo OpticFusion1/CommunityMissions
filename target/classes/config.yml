@@ -1,0 +1,78 @@
+storage:
+  autosave-seconds: 60
+
+rotation:
+  interval-minutes: 180
+  concurrent-missions: 2
+  timezone: UTC
+
+messages:
+  prefix: "&8[&dCommunityMissions&8]&r "
+  rotation: "&bNew community missions are now active! Use &f/missions menu&b."
+  perk-unlocked: "&aGlobal perk activated: &f%perk% &afor &f%duration%s&a!"
+  perk-expired: "&cGlobal perk expired: &f%perk%"
+
+missions:
+  quarry-drive:
+    enabled: true
+    type: BLOCK_BREAK
+    material: STONE
+    display-name: "&fQuarry Drive"
+    description: "Mine stone to rebuild the server's grand roads."
+    target: 1500
+    points-per-contribution: 2
+    milestones:
+      - "300|HASTE|600|&aMilestone reached! Quarry teams unlocked Haste.|say Quarry milestone reached"
+      - "900|SPEED|900|&bQuarry experts inspired everyone with speed boosts!|"
+  fisheries-week:
+    enabled: true
+    type: FISH_CATCH
+    display-name: "&3Fisheries Week"
+    description: "Catch fish to stock the town reserves for winter."
+    target: 500
+    points-per-contribution: 3
+    milestones:
+      - "100|NIGHT_VISION|600|&9Lanterns are lit across the docks. Night vision granted.|"
+      - "350|HERO_OF_THE_VILLAGE|600|&6Villagers celebrate your catches with better trades!|"
+  ranger-watch:
+    enabled: true
+    type: ENTITY_KILL
+    entity: ZOMBIE
+    display-name: "&2Ranger Watch"
+    description: "Clear zombies around settlements to keep paths safe."
+    target: 700
+    points-per-contribution: 2
+    milestones:
+      - "150|SPEED|500|&aRangers marked safe roads. Speed activated.|"
+      - "500|HERO_OF_THE_VILLAGE|500|&6The settlements trust everyone more now.|"
+  artisan-rush:
+    enabled: true
+    type: ITEM_CRAFT
+    material: OAK_PLANKS
+    display-name: "&6Artisan Rush"
+    description: "Craft oak planks for town restoration projects."
+    target: 1200
+    points-per-contribution: 1
+    milestones:
+      - "250|HASTE|700|&eArtisan benches are humming. Haste unlocked.|"
+      - "850|NIGHT_VISION|500|&dLate-night crafters lit up the workshops.|"
+  long-walk:
+    enabled: true
+    type: DISTANCE_WALK
+    display-name: "&aLong Walk Initiative"
+    description: "Travel the world and map safe routes for new players."
+    target: 9000
+    points-per-contribution: 1
+    milestones:
+      - "2000|SPEED|600|&aScouts charted better paths. Speed unlocked.|"
+      - "7000|NIGHT_VISION|800|&bSignal posts illuminate every trail.|"
+  clockwork-support:
+    enabled: true
+    type: PLAYTIME_MINUTES
+    display-name: "&bClockwork Support"
+    description: "Stay online and active to keep community stations staffed."
+    target: 2400
+    points-per-contribution: 4
+    milestones:
+      - "500|HERO_OF_THE_VILLAGE|600|&6Support crews improve village morale!|"
+      - "1700|HASTE|600|&eMaintenance teams streamline every process.|"
