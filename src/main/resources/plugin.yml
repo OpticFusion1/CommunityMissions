@@ -4,3 +4,11 @@ version: ${project.version}
 author: Optic_Fusion1
 main: optic_fusion1.communitymissions.CommunityMissions
 api-version: 1.13
+commands:
+  missions:
+    description: Main command for CommunityMissions
+    usage: /missions
+permissions:
+  communitymissions.admin:
+    description: Allows administrative controls for CommunityMissions
+    default: op
